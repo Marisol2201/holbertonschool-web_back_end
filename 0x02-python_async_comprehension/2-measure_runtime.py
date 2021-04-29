@@ -3,7 +3,7 @@
 file and write a measure_runtime"""
 
 import asyncio
-import 
+import time
 
 async_comprehension = __import__('1-async_comprehension').async_comprehension
 
@@ -14,8 +14,8 @@ async def measure_runtime() -> float:
     four times in parallel using asyncio.gather. measure_runtime
     should measure the total runtime and return it. Notice that the
     total runtime is roughly 10 seconds, explain it to yourself"""
-    t0 = time.time()
-    fcts = [async_comprehension() for i in range(4)]
-    await asyncio.gather(*fcts)
+    start_time = time.time()
+    await asyncio.gather(async_comprehension())
+    end_time = time.time()
 
-    return time.time() - t0
+    return end_time - start_time
